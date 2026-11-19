@@ -13,6 +13,7 @@ export function resource(key) {
     list: () => api.get(`/${key}`),
     get: (id) => api.get(`/${key}/${id}`),
     create: (data) => api.post(`/${key}`, data),
+    importRows: (rows) => api.post(`/${key}/import`, rows),
     update: (id, data) => api.put(`/${key}/${id}`, data),
     remove: (id) => api.delete(`/${key}/${id}`)
   }

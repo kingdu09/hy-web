@@ -1,6 +1,7 @@
 // 13 个业务模块的字段配置，驱动通用 CRUD 页面
 // type: text | number | date | textarea | select | ref | readonly
 // list: 是否在表格显示；form: 是否在表单显示；ref: 外键关联的资源 key
+// importable: 是否显示「导入 Excel」按钮（按业务模块开关）
 
 const status01 = [
   { value: 1, label: '启用' },
@@ -9,7 +10,7 @@ const status01 = [
 
 export const modules = [
   {
-    key: 'product-specs', name: '产品型号', icon: '📦', group: '基础资料',
+    key: 'product-specs', name: '产品型号', icon: '📦', group: '基础资料', importable: true,
     desc: '松针/布料的规格型号定义',
     fields: [
       { key: 'code', label: '型号编码', type: 'text', list: true, form: true, required: true },
@@ -22,7 +23,7 @@ export const modules = [
     ]
   },
   {
-    key: 'raw-materials', name: '原料管理', icon: '🧪', group: '基础资料',
+    key: 'raw-materials', name: '原料管理', icon: '🧪', group: '基础资料', importable: true,
     desc: '生产所需塑胶原料及库存',
     fields: [
       { key: 'name', label: '原料名称', type: 'text', list: true, form: true, required: true },
@@ -34,7 +35,7 @@ export const modules = [
     ]
   },
   {
-    key: 'suppliers', name: '供应商', icon: '🚚', group: '基础资料',
+    key: 'suppliers', name: '供应商', icon: '🚚', group: '基础资料', importable: true,
     desc: '原料供应商信息',
     fields: [
       { key: 'name', label: '供应商名称', type: 'text', list: true, form: true, required: true },
@@ -45,7 +46,7 @@ export const modules = [
     ]
   },
   {
-    key: 'customers', name: '客户管理', icon: '🏢', group: '基础资料',
+    key: 'customers', name: '客户管理', icon: '🏢', group: '基础资料', importable: true,
     desc: '购买松针/布料的客户',
     fields: [
       { key: 'name', label: '客户名称', type: 'text', list: true, form: true, required: true },
@@ -56,7 +57,7 @@ export const modules = [
     ]
   },
   {
-    key: 'employees', name: '员工管理', icon: '👷', group: '基础资料',
+    key: 'employees', name: '员工管理', icon: '👷', group: '基础资料', importable: true,
     desc: '工厂员工基本信息',
     fields: [
       { key: 'name', label: '姓名', type: 'text', list: true, form: true, required: true },
@@ -68,7 +69,7 @@ export const modules = [
     ]
   },
   {
-    key: 'production-orders', name: '生产工单', icon: '🏭', group: '生产管理',
+    key: 'production-orders', name: '生产工单', icon: '🏭', group: '生产管理', importable: true,
     desc: '每天安排的生产任务',
     fields: [
       { key: 'orderNo', label: '工单编号', type: 'text', list: true, form: true, required: true },
@@ -81,7 +82,7 @@ export const modules = [
     ]
   },
   {
-    key: 'work-reports', name: '报工记录', icon: '📝', group: '生产管理',
+    key: 'work-reports', name: '报工记录', icon: '📝', group: '生产管理', importable: true,
     desc: '工人每天的产量（计件工资依据）',
     fields: [
       { key: 'orderId', label: '生产工单', type: 'ref', ref: 'production-orders', refLabel: 'orderNo', list: true, form: true, required: true },
@@ -92,7 +93,7 @@ export const modules = [
     ]
   },
   {
-    key: 'purchase-orders', name: '采购入库', icon: '🛒', group: '采购管理',
+    key: 'purchase-orders', name: '采购入库', icon: '🛒', group: '采购管理', importable: true,
     desc: '原料进货的重量和价格',
     fields: [
       { key: 'materialId', label: '原料', type: 'ref', ref: 'raw-materials', refLabel: 'name', list: true, form: true, required: true },
@@ -105,7 +106,7 @@ export const modules = [
     ]
   },
   {
-    key: 'sales-orders', name: '销售订单', icon: '💰', group: '销售管理',
+    key: 'sales-orders', name: '销售订单', icon: '💰', group: '销售管理', importable: true,
     desc: '客户订购松针/布料的订单',
     fields: [
       { key: 'customerId', label: '客户', type: 'ref', ref: 'customers', refLabel: 'name', list: true, form: true, required: true },
@@ -120,7 +121,7 @@ export const modules = [
     ]
   },
   {
-    key: 'delivery-notes', name: '出货单', icon: '📤', group: '销售管理',
+    key: 'delivery-notes', name: '出货单', icon: '📤', group: '销售管理', importable: true,
     desc: '实际发给客户的货物记录',
     fields: [
       { key: 'salesOrderId', label: '销售订单', type: 'ref', ref: 'sales-orders', refLabel: 'id', list: true, form: true, required: true },
@@ -132,7 +133,7 @@ export const modules = [
     ]
   },
   {
-    key: 'shift-schedules', name: '排班管理', icon: '🗓️', group: '人事薪酬',
+    key: 'shift-schedules', name: '排班管理', icon: '🗓️', group: '人事薪酬', importable: true,
     desc: '每天谁上什么班',
     fields: [
       { key: 'employeeId', label: '员工', type: 'ref', ref: 'employees', refLabel: 'name', list: true, form: true, required: true },
@@ -144,7 +145,7 @@ export const modules = [
     ]
   },
   {
-    key: 'piece-rates', name: '计件单价', icon: '💵', group: '人事薪酬',
+    key: 'piece-rates', name: '计件单价', icon: '💵', group: '人事薪酬', importable: true,
     desc: '每种产品各工序的计件工资单价',
     fields: [
       { key: 'specId', label: '产品型号', type: 'ref', ref: 'product-specs', refLabel: 'name', list: true, form: true, required: true },
@@ -155,7 +156,7 @@ export const modules = [
     ]
   },
   {
-    key: 'payrolls', name: '工资月报', icon: '🧾', group: '人事薪酬',
+    key: 'payrolls', name: '工资月报', icon: '🧾', group: '人事薪酬', importable: true,
     desc: '每月员工工资汇总',
     fields: [
       { key: 'employeeId', label: '员工', type: 'ref', ref: 'employees', refLabel: 'name', list: true, form: true, required: true },

@@ -49,6 +49,8 @@ h1, h2, h3, p { margin: 0; }
 .btn-ghost:hover:not(:disabled) { border-color: var(--primary); color: var(--primary); }
 .btn-export { background: var(--success-soft); color: var(--success); border-color: #c6f0dd; }
 .btn-export:hover { background: #d8f5e6; }
+.btn-import { background: #eff6ff; color: #2563eb; border-color: #bfdbfe; }
+.btn-import:hover { background: #dbeafe; }
 .btn-danger { background: var(--danger-soft); color: var(--danger); border-color: #fecdd3; }
 .btn-danger:hover { background: #ffe4e6; }
 .btn-sm { height: 30px; padding: 0 12px; font-size: 12px; }
